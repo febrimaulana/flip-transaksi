@@ -14,10 +14,13 @@ const Link = ({
   textDecorationLine,
   rightComponent,
   leftComponent,
+  leftSpace,
+  rightSpace,
 }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       {leftComponent && leftComponent}
+      {leftSpace && <Gap width={leftSpace} />}
       <Heading
         title={title}
         color={color}
@@ -26,6 +29,7 @@ const Link = ({
         fontFamily={fontFamily}
         textDecorationLine={textDecorationLine}
       />
+      {rightSpace && <Gap width={rightSpace} />}
       {rightComponent && rightComponent}
     </TouchableOpacity>
   );
