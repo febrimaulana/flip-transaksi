@@ -1,0 +1,52 @@
+{
+  "name": "Flip",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "pod": "cd ios && pod install && cd ..",
+    "clean:ios": "cd ios && xcodebuild clean && cd ..",
+    "clean:android": "cd android && ./gradlew clean && cd ..",
+    "pushandroid:dev": "appcenter codepush release-react -a snjgrosir/snjgrosir-1 -d stg",
+    "pushandroid:prod": "appcenter codepush release-react -a snjgrosir/snjgrosir-1 -d prod",
+    "pushios:dev": "appcenter codepush release-react -a snjgrosir/snjgrosir -d stg",
+    "pushios:prod": "appcenter codepush release-react -a snjgrosir/snjgrosir -d prod",
+    "buildandroid:apk": "cd android && ./gradlew assembleRelease && cd ..",
+    "buildandroid:bundle": "cd android && ./gradlew bundleRelease && cd .."
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "axios": "^0.23.0",
+    "popup-ui": "^1.2.2",
+    "react": "17.0.2",
+    "react-native": "0.66.1",
+    "react-native-modal": "^13.0.0",
+    "react-native-responsive-screen": "^1.4.2",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.8.0",
+    "react-native-vector-icons": "^8.1.0",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
+    "@react-native-community/eslint-config": "^3.0.1",
+    "babel-jest": "^27.3.1",
+    "eslint": "^8.0.1",
+    "jest": "^27.3.1",
+    "metro-react-native-babel-preset": "^0.66.2",
+    "react-test-renderer": "17.0.2"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
