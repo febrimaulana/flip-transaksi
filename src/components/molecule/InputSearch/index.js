@@ -4,7 +4,7 @@ import {colors, fonts, hp, wp} from '../../../constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Gap, Link} from '../..';
 
-const InputSearch = ({onPressSort, onChangeText}) => {
+const InputSearch = ({onPressSort, onChangeText, titleSort}) => {
   return (
     <View style={styles.container}>
       <Icon name="search-outline" size={hp(3)} color={colors.silver} />
@@ -16,7 +16,7 @@ const InputSearch = ({onPressSort, onChangeText}) => {
         onChangeText={onChangeText}
       />
       <Link
-        title="URUTKAN"
+        title={titleSort}
         color={colors.orange}
         fontFamily={fonts.semiBold}
         size={hp(1.7)}

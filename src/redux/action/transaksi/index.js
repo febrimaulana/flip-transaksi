@@ -9,7 +9,7 @@ export const findAllTransaksi = () => async dispatch => {
       value.push(result.data[key]);
     });
     dispatch({type: reducer.TRANSAKSI, value: value});
-    return result.data;
+    return value;
   } catch (e) {
     const error = e.response.data;
     throw error;

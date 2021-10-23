@@ -10,7 +10,7 @@ import {
 } from '../../components';
 import {hp, wp} from '../../constants';
 import {findAllTransaksi} from '../../redux';
-import {showErrorToas} from '../../utils';
+import {formatDate, showErrorToas} from '../../utils';
 
 const ListTransaksi = ({navigation}) => {
   const dispatch = useDispatch();
@@ -18,16 +18,13 @@ const ListTransaksi = ({navigation}) => {
   const {transaksi} = useSelector(state => state.transaksi);
   const [modal, setModal] = useState(false);
   const [data, setData] = useState(transaksi);
+  const [sortActive, setSortActive] = useState('URUTKAN');
 
   useEffect(() => {
     const transaksi = async () => {
       try {
         const result = await dispatch(findAllTransaksi());
-        const value = [];
-        Object.keys(result).map(key => {
-          value.push(result[key]);
-        });
-        setData(value);
+        setData(result);
       } catch (e) {
         showErrorToas('Oops', e.message);
       }
@@ -39,11 +36,7 @@ const ListTransaksi = ({navigation}) => {
   const onRefresh = async () => {
     try {
       const result = await dispatch(findAllTransaksi());
-      const value = [];
-      Object.keys(result).map(key => {
-        value.push(result[key]);
-      });
-      setData(value);
+      setData(result);
     } catch (e) {
       showErrorToas('Oops', e.message);
     }
@@ -61,9 +54,52 @@ const ListTransaksi = ({navigation}) => {
     setData(search);
   };
 
+  const onSort = value => {
+    setSortActive(value);
+    setModal(false);
+    const result = transaksi.sort((a, b) => {
+      if (value === 'Nama A-Z') {
+        if (a.beneficiary_name > b.beneficiary_name) {
+          return 1;
+        }
+        if (a.beneficiary_name < b.beneficiary_name) {
+          return -1;
+        }
+      } else if (value === 'Nama Z-A') {
+        if (a.beneficiary_name < b.beneficiary_name) {
+          return 1;
+        }
+        if (a.beneficiary_name > b.beneficiary_name) {
+          return -1;
+        }
+      } else if (value === 'Tanggal Terlama') {
+        if (formatDate(a.created_at) > formatDate(b.created_at)) {
+          return 1;
+        }
+        if (formatDate(a.created_at) < formatDate(b.created_at)) {
+          return -1;
+        }
+      } else {
+        if (formatDate(a.created_at) < formatDate(b.created_at)) {
+          return 1;
+        }
+        if (formatDate(a.created_at) > formatDate(b.created_at)) {
+          return -1;
+        }
+      }
+      return 0;
+    });
+
+    setData(result);
+  };
+
   return (
     <KeyboardViewGlobal style={styles.page}>
-      <InputSearch onPressSort={() => setModal(true)} onChangeText={onSearch} />
+      <InputSearch
+        onPressSort={() => setModal(true)}
+        onChangeText={onSearch}
+        titleSort={sortActive}
+      />
       <Gap height={hp(1)} />
       <FlatList
         refreshing={loading}
@@ -77,14 +113,18 @@ const ListTransaksi = ({navigation}) => {
             beneficiaryBank={item.beneficiary_bank}
             beneficiaryName={item.beneficiary_name}
             amount={item.amount}
-            completedAt={item.completed_at}
             createdAt={item.created_at}
             status={item.status}
             onPress={() => navigation.push('DetailTransaksi')}
           />
         )}
       />
-      <ModalSort isVisible={modal} onClose={() => setModal(false)} />
+      <ModalSort
+        isVisible={modal}
+        onClose={() => setModal(false)}
+        onSelect={onSort}
+        sortActive={sortActive}
+      />
     </KeyboardViewGlobal>
   );
 };

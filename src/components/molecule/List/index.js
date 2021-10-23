@@ -13,11 +13,10 @@ const List = ({
   beneficiaryName,
   amount,
   createdAt,
-  completedAt,
   status,
 }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container(status)} onPress={onPress}>
       <View>
         <View style={styles.contentTextBank}>
           <Heading
@@ -50,7 +49,7 @@ const List = ({
           <Dot />
           <Gap width={wp(1)} />
           <Heading
-            title={formatDate(status === 'SUCCESS' ? completedAt : createdAt)}
+            title={formatDate(createdAt)}
             fontFamily={fonts.semiBold}
             fontSize={hp(1.5)}
           />
@@ -68,7 +67,7 @@ const List = ({
 export default List;
 
 const styles = StyleSheet.create({
-  container: {
+  container: status => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -76,9 +75,9 @@ const styles = StyleSheet.create({
     padding: hp(2),
     borderRadius: hp(1),
     borderLeftWidth: wp(2.5),
-    borderLeftColor: colors.orange2,
+    borderLeftColor: status === 'SUCCESS' ? colors.green : colors.orange2,
     marginVertical: hp(0.5),
-  },
+  }),
   contentTextBank: {
     flexDirection: 'row',
     alignItems: 'center',
