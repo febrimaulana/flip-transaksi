@@ -8,6 +8,7 @@ import Input from './Input';
 import KeyboardViewGlobal from './KeyboardViewGlobal';
 import ButtonOutline from './Button/ButtonOutline';
 import Line from './Line';
+import Dot from './Dot';
 
 export {
   Gap,
@@ -20,4 +21,5 @@ export {
   KeyboardViewGlobal,
   ButtonOutline,
   Line,
+  Dot,
 };

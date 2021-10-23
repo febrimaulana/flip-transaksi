@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import {colors, fonts} from '../../../constants';
+import {colors, fonts, hp} from '../../../constants';
 import Gap from '../Gap';
 import Heading from '../Heading';
 
@@ -49,7 +49,7 @@ const Button = ({
       <Heading
         title={title}
         color={textColor ? textColor : colors.white}
-        fontSize={fontSize}
+        fontSize={fontSize || hp(1.5)}
         fontFamily={fontFamily || fonts.semiBold}
         textTransform={textTransform}
       />

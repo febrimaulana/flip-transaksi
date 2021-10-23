@@ -48,7 +48,7 @@ const ButtonOutline = ({
       <Heading
         title={title}
         color={textColor ? textColor : colors.black}
-        fontSize={fontSize || hp(1.8)}
+        fontSize={fontSize || hp(1.5)}
         fontFamily={fontFamily || fonts.semiBold}
         textTransform={textTransform}
       />

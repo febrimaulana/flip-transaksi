@@ -1,34 +1,66 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ButtonOutline, Gap, Heading} from '../..';
+import {ButtonOutline, Gap, Heading, Button} from '../..';
 import {colors, fonts, hp, wp} from '../../../constants';
+import {formatDate, formatRupiah} from '../../../utils';
+import {Dot} from '../../../components';
 
-const List = ({onPress}) => {
+const List = ({
+  onPress,
+  senderBank,
+  beneficiaryBank,
+  beneficiaryName,
+  amount,
+  createdAt,
+  completedAt,
+  status,
+}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View>
         <View style={styles.contentTextBank}>
           <Heading
-            title="Permata"
+            title={senderBank}
             color={colors.black}
             fontFamily={fonts.bold}
             fontSize={hp(2)}
+            textTransform="uppercase"
           />
           <Icon name="arrow-forward" color={colors.black} size={wp(5)} />
-          <Heading title="BNI" color={colors.black} fontFamily={fonts.bold} />
+          <Heading
+            title={beneficiaryBank}
+            color={colors.black}
+            fontFamily={fonts.bold}
+            textTransform="uppercase"
+          />
         </View>
-        <Heading title="FEBRI MAULANA YUNUS" fontFamily={fonts.semiBold} />
+        <Heading
+          title={beneficiaryName}
+          fontFamily={fonts.semiBold}
+          textTransform="uppercase"
+        />
         <View style={styles.contentTextPrice}>
-          <Heading title="Rp10.028" fontFamily={fonts.medium} />
+          <Heading
+            title={formatRupiah(amount)}
+            fontFamily={fonts.medium}
+            fontSize={hp(1.5)}
+          />
           <Gap width={wp(1)} />
-          <Heading title="•" fontFamily={fonts.medium} fontSize={hp(3)} />
+          <Dot />
           <Gap width={wp(1)} />
-          <Heading title="8 April 2020" fontFamily={fonts.semiBold} />
+          <Heading
+            title={formatDate(status === 'SUCCESS' ? completedAt : createdAt)}
+            fontFamily={fonts.semiBold}
+            fontSize={hp(1.5)}
+          />
         </View>
       </View>
-      <ButtonOutline title="Pengecekan" />
-      {/* <Button title="Berhasil" /> */}
+      {status === 'SUCCESS' ? (
+        <Button title="Berhasil" />
+      ) : (
+        <ButtonOutline title="Pengecekan" />
+      )}
     </TouchableOpacity>
   );
 };
