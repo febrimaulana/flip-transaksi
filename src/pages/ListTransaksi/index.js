@@ -15,8 +15,9 @@ import {showErrorToas} from '../../utils';
 const ListTransaksi = ({navigation}) => {
   const dispatch = useDispatch();
   const {loading} = useSelector(state => state.global);
+  const {transaksi} = useSelector(state => state.transaksi);
   const [modal, setModal] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(transaksi);
 
   useEffect(() => {
     const transaksi = async () => {
@@ -48,9 +49,21 @@ const ListTransaksi = ({navigation}) => {
     }
   };
 
+  const onSearch = async value => {
+    const searchReq = new RegExp(value, 'i');
+    const search = transaksi.filter(
+      item =>
+        searchReq.test(item.sender_bank.toLowerCase()) ||
+        searchReq.test(item.beneficiary_bank.toLowerCase()) ||
+        searchReq.test(item.beneficiary_name.toLowerCase()) ||
+        searchReq.test(item.amount),
+    );
+    setData(search);
+  };
+
   return (
     <KeyboardViewGlobal style={styles.page}>
-      <InputSearch onPressSort={() => setModal(true)} />
+      <InputSearch onPressSort={() => setModal(true)} onChangeText={onSearch} />
       <Gap height={hp(1)} />
       <FlatList
         refreshing={loading}

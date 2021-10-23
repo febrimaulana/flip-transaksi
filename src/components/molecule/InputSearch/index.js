@@ -4,7 +4,7 @@ import {colors, fonts, hp, wp} from '../../../constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Gap, Link} from '../..';
 
-const InputSearch = ({onPressSort}) => {
+const InputSearch = ({onPressSort, onChangeText}) => {
   return (
     <View style={styles.container}>
       <Icon name="search-outline" size={hp(3)} color={colors.silver} />
@@ -13,6 +13,7 @@ const InputSearch = ({onPressSort}) => {
         style={styles.input}
         placeholder="Cari nama, bank, atau nominal"
         placeholderTextColor={colors.silver}
+        onChangeText={onChangeText}
       />
       <Link
         title="URUTKAN"
