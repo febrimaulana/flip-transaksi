@@ -1,11 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
+import {Gap, InputSearch, KeyboardViewGlobal, List} from '../../components';
+import {hp, wp} from '../../constants';
 
 const ListTransaksi = () => {
   return (
-    <View style={styles.page}>
-      <Text>ListTransaksi</Text>
-    </View>
+    <KeyboardViewGlobal style={styles.page}>
+      <InputSearch />
+      <Gap height={hp(1)} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <List />
+        <List />
+      </ScrollView>
+    </KeyboardViewGlobal>
   );
 };
 
@@ -14,5 +21,6 @@ export default ListTransaksi;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
+    padding: wp(2),
   },
 });

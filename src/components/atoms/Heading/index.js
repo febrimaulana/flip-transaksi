@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     textDecorationLine,
     textTransform,
   ) => ({
-    fontSize: fontSize || hp(2),
+    fontSize: fontSize || hp(1.7),
     color: color || colors.black,
     fontFamily: fontFamily || fonts.regular,
     textAlign: center ? 'center' : 'left',

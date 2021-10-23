@@ -5,16 +5,15 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import {colors, fonts} from '../../../constants';
-import Gap from '../Gap';
-import Heading from '../Heading';
+import {colors, fonts, hp} from '../../../../constants';
+import {Gap, Heading} from '../../../';
 
-const Button = ({
+const ButtonOutline = ({
   title,
   onPress,
   onLongPress,
   textColor,
-  backgroundColor,
+  borderColor,
   disabled,
   rigthComponent,
   leftComponent,
@@ -30,7 +29,7 @@ const Button = ({
     return (
       <View
         style={{
-          ...styles.button(backgroundColor, noRadius),
+          ...styles.button(borderColor, noRadius),
           ...styles.loading,
         }}>
         <ActivityIndicator size="small" color={colors.white} />
@@ -40,7 +39,7 @@ const Button = ({
 
   return (
     <TouchableOpacity
-      style={styles.button(backgroundColor, noRadius)}
+      style={styles.button(borderColor, noRadius)}
       onPress={onPress}
       onLongPress={onLongPress}
       disabled={disabled}>
@@ -48,8 +47,8 @@ const Button = ({
       {spaceLeft && <Gap width={spaceLeft} />}
       <Heading
         title={title}
-        color={textColor ? textColor : colors.white}
-        fontSize={fontSize}
+        color={textColor ? textColor : colors.black}
+        fontSize={fontSize || hp(1.8)}
         fontFamily={fontFamily || fonts.semiBold}
         textTransform={textTransform}
       />
@@ -59,17 +58,19 @@ const Button = ({
   );
 };
 
-export default Button;
+export default ButtonOutline;
 
 const styles = StyleSheet.create({
-  button: (backgroundColor, noRadius) => ({
-    backgroundColor: backgroundColor || colors.green,
+  button: (borderColor, noRadius) => ({
+    backgroundColor: colors.white,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderRadius: noRadius ? 0 : 10,
     flexDirection: 'row',
+    borderWidth: 1,
+    borderColor: borderColor || colors.orange2,
   }),
   loading: {
     justifyContent: 'center',

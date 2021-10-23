@@ -7,7 +7,7 @@ const KeyboardViewGlobal = props => {
     <KeyboardAvoidingView
       style={props.style}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={hp(6)}>
+      keyboardVerticalOffset={hp(2)}>
       {props.children}
     </KeyboardAvoidingView>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Gap} from '..';
 import {Heading} from '../../../components';
+import {wp} from '../../../constants';
 
 const Link = ({
   title,
@@ -10,9 +12,12 @@ const Link = ({
   center,
   fontFamily,
   textDecorationLine,
+  rightComponent,
+  leftComponent,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      {leftComponent && leftComponent}
       <Heading
         title={title}
         color={color}
@@ -21,8 +26,16 @@ const Link = ({
         fontFamily={fontFamily}
         textDecorationLine={textDecorationLine}
       />
+      {rightComponent && rightComponent}
     </TouchableOpacity>
   );
 };
 
 export default Link;
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
