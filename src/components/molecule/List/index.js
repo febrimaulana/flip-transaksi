@@ -4,9 +4,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {ButtonOutline, Gap, Heading} from '../..';
 import {colors, fonts, hp, wp} from '../../../constants';
 
-const List = () => {
+const List = ({onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View>
         <View style={styles.contentTextBank}>
           <Heading

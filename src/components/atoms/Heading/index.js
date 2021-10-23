@@ -11,6 +11,7 @@ const Heading = ({
   center,
   textDecorationLine,
   textTransform,
+  textAlign,
 }) => {
   return (
     <Text
@@ -22,6 +23,7 @@ const Heading = ({
         center,
         textDecorationLine,
         textTransform,
+        textAlign,
       )}
       numberOfLines={numberOfLines}>
       {title}
@@ -39,11 +41,12 @@ const styles = StyleSheet.create({
     center,
     textDecorationLine,
     textTransform,
+    textAlign,
   ) => ({
     fontSize: fontSize || hp(1.7),
     color: color || colors.black,
     fontFamily: fontFamily || fonts.regular,
-    textAlign: center ? 'center' : 'left',
+    textAlign: center ? 'center' : textAlign ? textAlign : 'left',
     textDecorationLine: textDecorationLine ? textDecorationLine : 'none',
     textTransform: textTransform,
   }),

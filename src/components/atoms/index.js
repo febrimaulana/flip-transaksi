@@ -7,6 +7,7 @@ import Link from './Link';
 import Input from './Input';
 import KeyboardViewGlobal from './KeyboardViewGlobal';
 import ButtonOutline from './Button/ButtonOutline';
+import Line from './Line';
 
 export {
   Gap,
@@ -18,4 +19,5 @@ export {
   Input,
   KeyboardViewGlobal,
   ButtonOutline,
+  Line,
 };

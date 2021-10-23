@@ -9,7 +9,7 @@ import {
 } from '../../components';
 import {hp, wp} from '../../constants';
 
-const ListTransaksi = () => {
+const ListTransaksi = ({navigation}) => {
   const [modal, setModal] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ const ListTransaksi = () => {
       <InputSearch onPressSort={() => setModal(true)} />
       <Gap height={hp(1)} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <List />
+        <List onPress={() => navigation.push('DetailTransaksi')} />
         <List />
       </ScrollView>
       <ModalSort isVisible={modal} onClose={() => setModal(false)} />
