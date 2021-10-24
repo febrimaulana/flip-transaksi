@@ -4,12 +4,26 @@ import {ButtonIconOnly, Gap, Heading, Line, Link} from '../../components';
 import {colors, fonts, hp, wp} from '../../constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Clipboard from '@react-native-community/clipboard';
-import {showInfoToas} from '../../utils';
+import {formatDate, formatRupiah, showInfoToas} from '../../utils';
 
-const DetailTransaksi = ({navigation}) => {
+const DetailTransaksi = ({navigation, route}) => {
+  const {
+    id,
+    sender_bank,
+    beneficiary_bank,
+    beneficiary_name,
+    account_number,
+    amount,
+    remark,
+    unique_code,
+    created_at,
+  } = route.params;
+  console.log('====================================');
+  console.log(route.params);
+  console.log('====================================');
   const onCopy = () => {
-    Clipboard.setString('1234081286071968');
-    showInfoToas('ID TRANSAKSI', 'FTJANSJASJA BERHASIL DI SALIN');
+    Clipboard.setString(id);
+    showInfoToas('ID TRANSAKSI', `${id} BERHASIL DI SALIN`);
   };
 
   return (
@@ -17,7 +31,7 @@ const DetailTransaksi = ({navigation}) => {
       <Gap height={hp(2)} />
       <View style={styles.container}>
         <View style={styles.contentHeader}>
-          <Heading title="ID TRANSAKSI: #FTJANSJASJA" fontFamily={fonts.bold} />
+          <Heading title={`ID TRANSAKSI: #${id}`} fontFamily={fonts.bold} />
           <Gap width={wp(2)} />
           <ButtonIconOnly
             icon={
@@ -43,42 +57,56 @@ const DetailTransaksi = ({navigation}) => {
         <Gap height={hp(1)} />
         <View style={styles.content}>
           <View style={styles.contentTextSpace}>
-            <Heading title="Permata" fontFamily={fonts.bold} fontSize={hp(2)} />
+            <Heading
+              title={sender_bank}
+              fontFamily={fonts.bold}
+              fontSize={hp(2)}
+              textTransform="uppercase"
+            />
             <Icon
               name="arrow-forward-outline"
               color={colors.black}
               size={wp(6)}
             />
-            <Heading title="BNI" fontFamily={fonts.bold} fontSize={hp(2)} />
+            <Heading
+              title={beneficiary_bank}
+              fontFamily={fonts.bold}
+              fontSize={hp(2)}
+              textTransform="uppercase"
+            />
           </View>
         </View>
         <Gap height={hp(1)} />
         <View style={styles.conatinerText}>
           <View style={styles.contentText}>
-            <Heading title="FEBRI MAULANA" fontFamily={fonts.bold} />
-            <Heading title="031395548" />
+            <Heading
+              title={beneficiary_name}
+              fontFamily={fonts.bold}
+              textTransform="uppercase"
+            />
+            <Heading title={account_number} />
           </View>
           <View style={styles.contentDesc}>
             <Heading title="NOMINAL" fontFamily={fonts.bold} />
-            <Heading title="Rp10.028" />
+            <Heading title={formatRupiah(amount)} />
           </View>
         </View>
         <Gap height={hp(1)} />
         <View style={styles.conatinerText}>
           <View style={styles.contentText}>
             <Heading title="BERITA TRANSFER" fontFamily={fonts.bold} />
-            <Heading title="Coba mbangking yey" />
+            <Heading title={remark} />
           </View>
           <View style={styles.contentDesc}>
             <Heading title="KODE UNIK" fontFamily={fonts.bold} />
-            <Heading title="50" />
+            <Heading title={unique_code} />
           </View>
         </View>
         <Gap height={hp(1)} />
         <View style={styles.conatinerText}>
           <View style={styles.contentText}>
             <Heading title="WAKTU DIBUAT" fontFamily={fonts.bold} />
-            <Heading title="8 April 2020" />
+            <Heading title={formatDate(created_at)} />
           </View>
         </View>
         <Gap height={hp(3)} />

@@ -115,7 +115,7 @@ const ListTransaksi = ({navigation}) => {
             amount={item.amount}
             createdAt={item.created_at}
             status={item.status}
-            onPress={() => navigation.push('DetailTransaksi')}
+            onPress={() => navigation.push('DetailTransaksi', item)}
           />
         )}
       />

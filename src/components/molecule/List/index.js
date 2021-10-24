@@ -56,9 +56,9 @@ const List = ({
         </View>
       </View>
       {status === 'SUCCESS' ? (
-        <Button title="Berhasil" />
+        <Button title="Berhasil" disabled />
       ) : (
-        <ButtonOutline title="Pengecekan" />
+        <ButtonOutline title="Pengecekan" disabled />
       )}
     </TouchableOpacity>
   );
