@@ -1,6 +1,4 @@
-
 # Flip React Native Mobile Developer Test
-
 
 ## Running code notes
 
@@ -9,7 +7,6 @@ to install is in the link below.
 
 [Setting up the development environment](https://reactnative.dev/docs/environment-setup)
 
-  
 ## Run Locally
 
 Clone the project
@@ -41,6 +38,8 @@ Running IOS
 ```bash
   npm run ios or yarn ios
 ```
-  
-## Video Demo
+
+## Demo Aplikasi
+
 [video demo](https://drive.google.com/file/d/1QiYVu41xug2E87KAdhZ6B_08sOfcybu9/view?usp=sharing)
+[Download APK Android](https://i.diawi.com/mmPjAZ)
