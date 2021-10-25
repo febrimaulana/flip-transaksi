@@ -41,5 +41,5 @@ Running IOS
 
 ## Demo Aplikasi
 
-[video demo](https://drive.google.com/file/d/1QiYVu41xug2E87KAdhZ6B_08sOfcybu9/view?usp=sharing)
-[Download APK Android](https://i.diawi.com/mmPjAZ)
+- [video demo](https://drive.google.com/file/d/1QiYVu41xug2E87KAdhZ6B_08sOfcybu9/view?usp=sharing)
+- [Download APK Android](https://i.diawi.com/mmPjAZ)
